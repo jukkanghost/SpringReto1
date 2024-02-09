@@ -3,10 +3,7 @@ package com.banana.bananawhatsapp.modelos;
 import com.banana.bananawhatsapp.exceptions.MensajeException;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @AllArgsConstructor
@@ -20,8 +17,12 @@ public class Mensaje {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @OneToOne
+    @JoinColumn(name = "remitente_id")
     private Usuario remitente;
 
+    @OneToOne
+    @JoinColumn(name = "destinatario_id")
     private Usuario destinatario;
 
     private String cuerpo;

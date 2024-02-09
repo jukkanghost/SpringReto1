@@ -2,15 +2,14 @@ package com.banana.bananawhatsapp.servicios;
 
 import com.banana.bananawhatsapp.exceptions.UsuarioException;
 import com.banana.bananawhatsapp.modelos.Usuario;
-import com.banana.bananawhatsapp.persistencia.IUsuarioRepository;
-import com.banana.bananawhatsapp.persistencia.UsuarioRepositoryData;
+import com.banana.bananawhatsapp.persistencia.extended.UsuarioRepositoryData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
-public class ServicioUsuarios implements IServicioUsuarios{
+public class ServicioUsuarios implements IServicioUsuarios {
 
     @Autowired
     private UsuarioRepositoryData repoUsuario;
@@ -24,7 +23,10 @@ public class ServicioUsuarios implements IServicioUsuarios{
 
     @Override
     public Usuario crearUsuario(Usuario usuario) throws UsuarioException {
-        return repoUsuario.save(usuario);
+        if (usuario.valido()) {
+            return repoUsuario.save(usuario);
+        }
+        else return null;
     }
 
     @Override
