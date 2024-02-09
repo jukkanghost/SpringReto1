@@ -3,6 +3,10 @@ package com.banana.bananawhatsapp.modelos;
 import com.banana.bananawhatsapp.exceptions.MensajeException;
 import lombok.*;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDate;
 
 @AllArgsConstructor
@@ -10,7 +14,10 @@ import java.time.LocalDate;
 @Setter
 @Getter
 @ToString
+@Entity
 public class Mensaje {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private Usuario remitente;
