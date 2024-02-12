@@ -2,7 +2,7 @@ package com.banana.bananawhatsapp.servicios;
 
 import com.banana.bananawhatsapp.exceptions.UsuarioException;
 import com.banana.bananawhatsapp.modelos.Usuario;
-import com.banana.bananawhatsapp.persistencia.extended.UsuarioRepositoryData;
+import com.banana.bananawhatsapp.persistencia.usuario.UsuarioRepositoryData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

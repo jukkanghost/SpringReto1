@@ -1,10 +1,7 @@
-package com.banana.bananawhatsapp.persistencia.extended;
+package com.banana.bananawhatsapp.persistencia.usuario;
 
 import com.banana.bananawhatsapp.exceptions.UsuarioException;
 import com.banana.bananawhatsapp.modelos.Usuario;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Propagation;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,14 +17,9 @@ public class CustomUsuarioRepositoryImpl implements CustomUsuarioRepository {
     EntityManager em;
 
     @Override
-    public boolean valido(Usuario user) throws UsuarioException {
-        return user.valido();
-    }
-
-    @Override
     @Transactional
     public Usuario crear(Usuario usuario) throws SQLException {
-       if(valido(usuario)) {
+       if(usuario.valido()) {
             em.persist(usuario);
             return usuario;
         }
@@ -37,7 +29,7 @@ public class CustomUsuarioRepositoryImpl implements CustomUsuarioRepository {
     @Override
     @Transactional
     public Usuario actualizar(Usuario usuario) throws SQLException {
-       if(valido(usuario)) {
+       if(usuario.valido()) {
 
            Usuario currUsuario = em.find(Usuario.class, usuario.getId());
 

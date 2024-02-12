@@ -1,4 +1,4 @@
-package com.banana.bananawhatsapp.persistencia.extended;
+package com.banana.bananawhatsapp.persistencia.usuario;
 
 import com.banana.bananawhatsapp.modelos.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;

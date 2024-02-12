@@ -4,8 +4,7 @@ import com.banana.bananawhatsapp.exceptions.MensajeException;
 import com.banana.bananawhatsapp.exceptions.UsuarioException;
 import com.banana.bananawhatsapp.modelos.Mensaje;
 import com.banana.bananawhatsapp.modelos.Usuario;
-import com.banana.bananawhatsapp.persistencia.IMensajeRepository;
-import com.banana.bananawhatsapp.persistencia.MensajeRepositoryData;
+import com.banana.bananawhatsapp.persistencia.mensaje.MensajeRepositoryData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
