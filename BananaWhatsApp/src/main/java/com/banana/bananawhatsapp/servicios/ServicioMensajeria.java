@@ -35,10 +35,11 @@ public class ServicioMensajeria implements IServicioMensajeria{
     @Override
     @Transactional
     public boolean borrarChatConUsuario(Usuario remitente, Usuario destinatario) throws UsuarioException, MensajeException {
-//        if (remitente.valido() && destinatario.valido()){
-//            repoMensaje.deleteByRemitenteAndDestinatario(remitente, destinatario);
-//            return true;
-//        }
+        if (remitente.valido() && destinatario.valido()){
+            repoMensaje.deleteByRemitenteAndDestinatario(remitente, destinatario);
+            repoMensaje.deleteByRemitenteAndDestinatario(destinatario, remitente);
+            return true;
+        }
         return false;
     }
 }
