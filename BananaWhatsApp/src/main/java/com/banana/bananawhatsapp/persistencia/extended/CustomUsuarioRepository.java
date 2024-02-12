@@ -10,12 +10,13 @@ import java.util.Set;
 public interface CustomUsuarioRepository {
     public boolean valido(Usuario user) throws UsuarioException;
 
-    public Usuario obtener(int id) throws SQLException;
     public Usuario crear(Usuario usuario) throws SQLException;
 
     public Usuario actualizar(Usuario usuario) throws SQLException;
 
     public boolean borrar(Usuario usuario) throws SQLException;
-    @Query( nativeQuery = true, value = "SELECT * FROM Usuario s WHERE s.id != ?1 ORDER BY s.id LIMIT ?2")
+
+    public Usuario obtener(int id) throws SQLException;
+
     public Set<Usuario> obtenerPosiblesDestinatarios(Integer id, Integer max) throws SQLException;
 }

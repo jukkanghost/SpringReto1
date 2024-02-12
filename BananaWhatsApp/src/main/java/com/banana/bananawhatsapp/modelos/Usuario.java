@@ -13,6 +13,7 @@ import java.util.List;
 @Getter
 @ToString
 @Entity
+@NamedQuery(name = "Usuario.get", query = "SELECT e FROM Usuario e WHERE e.id != ?1")
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,10 +23,12 @@ public class Usuario {
     private LocalDate alta;
     private boolean activo;
 
-    @OneToMany(mappedBy = "remitente", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    @OneToMany(mappedBy = "remitente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Mensaje> enviados;
 
-    @OneToMany(mappedBy = "destinatario", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    @OneToMany(mappedBy = "destinatario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Mensaje> recibidos;
 
     public Usuario(Integer id, String nombre, String email, LocalDate alta, boolean activo) {

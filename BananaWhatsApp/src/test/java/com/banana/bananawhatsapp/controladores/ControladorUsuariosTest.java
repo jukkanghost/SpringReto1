@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -52,6 +53,7 @@ class ControladorUsuariosTest {
     }
 
     @Test
+    @Transactional
     void dadoUsuarioValido_cuandoActualizar_entoncesUsuarioValido() throws Exception {
         Integer iDUser = 2;
         LocalDate fecha = LocalDate.parse("2023-12-17");
