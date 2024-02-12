@@ -1,19 +1,28 @@
 package com.banana.bananawhatsapp.controladores;
 
+import com.banana.bananawhatsapp.config.SpringConfig;
 import com.banana.bananawhatsapp.persistencia.IUsuarioRepository;
+import com.banana.bananawhatsapp.persistencia.usuario.UsuarioRepositoryData;
 import com.banana.bananawhatsapp.util.DBUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = {SpringConfig.class})
 class ControladorMensajesTest {
 
+    @Autowired
     ControladorMensajes controladorMensajes;
 
-    IUsuarioRepository repoUser;
+    @Autowired
+    UsuarioRepositoryData repoUser;
 
     @BeforeEach
     void cleanAndReloadData() {
