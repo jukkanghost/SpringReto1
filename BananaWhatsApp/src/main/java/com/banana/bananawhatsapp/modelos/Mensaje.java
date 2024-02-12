@@ -17,12 +17,12 @@ public class Mensaje {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne
-    @JoinColumn(name = "remitente_id")
+    @ManyToOne
+    @JoinColumn(name = "from_user")
     private Usuario remitente;
 
-    @OneToOne
-    @JoinColumn(name = "destinatario_id")
+    @ManyToOne
+    @JoinColumn(name = "to_user")
     private Usuario destinatario;
 
     private String cuerpo;

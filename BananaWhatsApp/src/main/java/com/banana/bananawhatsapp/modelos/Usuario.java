@@ -3,11 +3,9 @@ package com.banana.bananawhatsapp.modelos;
 import com.banana.bananawhatsapp.exceptions.UsuarioException;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,6 +21,20 @@ public class Usuario {
     private String email;
     private LocalDate alta;
     private boolean activo;
+
+    @OneToMany(mappedBy = "remitente", cascade = CascadeType.ALL)
+    private List<Mensaje> enviados;
+
+    @OneToMany(mappedBy = "destinatario", cascade = CascadeType.ALL)
+    private List<Mensaje> recibidos;
+
+    public Usuario(Integer id, String nombre, String email, LocalDate alta, boolean activo) {
+        this.id = id;
+        this.nombre = nombre;
+        this.email = email;
+        this.alta = alta;
+        this.activo = activo;
+    }
 
     private boolean validarNombre() {
         return this.nombre != null && this.nombre.length() >= 3;
