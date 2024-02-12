@@ -65,7 +65,11 @@ public class CustomUsuarioRepositoryImpl implements CustomUsuarioRepository {
     @Override
     @Transactional
     public Usuario obtener(int id) throws SQLException {
-        return em.find(Usuario.class, id);
+        Usuario user = em.find(Usuario.class, id);
+        if(user != null) {
+            return user;
+        }
+        else throw new UsuarioException("usario no encontrado");
     }
 
 
