@@ -4,6 +4,7 @@ import com.banana.bananawhatsapp.config.SpringConfig;
 import com.banana.bananawhatsapp.modelos.Mensaje;
 import com.banana.bananawhatsapp.modelos.Usuario;
 import com.banana.bananawhatsapp.persistencia.IUsuarioRepository;
+import com.banana.bananawhatsapp.persistencia.usuario.UsuarioRepositoryData;
 import com.banana.bananawhatsapp.util.DBUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ContextConfiguration(classes = {SpringConfig.class})
 class ServicioMensajeriaTest {
     @Autowired
-    IUsuarioRepository repoUsuario;
+    UsuarioRepositoryData repoUsuario;
     @Autowired
     IServicioMensajeria servicio;
 

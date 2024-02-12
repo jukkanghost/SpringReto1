@@ -8,4 +8,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface MensajeRepositoryData extends JpaRepository<Mensaje,Integer>, CustomMensajeRepository{
+    List<Mensaje> findByRemitenteAndDestinatario(Usuario remitente, Usuario destinatario);
+
+    boolean deleteByRemitenteAndDestinatario(Usuario remitente, Usuario destinatario);
 }
