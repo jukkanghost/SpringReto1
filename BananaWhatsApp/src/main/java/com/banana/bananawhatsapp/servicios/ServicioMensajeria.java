@@ -31,10 +31,10 @@ public class ServicioMensajeria implements IServicioMensajeria{
 
     @Override
     public List<Mensaje> mostrarChatConUsuario(Usuario remitente, Usuario destinatario) throws UsuarioException, MensajeException {
-        Usuario remi = repoUsuario.findById(remitente.getId()).get();
-        Usuario dest = repoUsuario.findById(destinatario.getId()).get();
-        if (remi.valido() && dest.valido()){
-            return repoMensaje.findByRemitenteAndDestinatario(remi, dest);
+//        Usuario remi = repoUsuario.findById(remitente.getId()).get();
+//        Usuario dest = repoUsuario.findById(destinatario.getId()).get();
+        if (remitente.valido() && destinatario.valido()){
+            return repoMensaje.findByRemitenteAndDestinatario(remitente, destinatario);
         }
         return null;
     }
@@ -42,11 +42,11 @@ public class ServicioMensajeria implements IServicioMensajeria{
     @Override
     @Transactional
     public boolean borrarChatConUsuario(Usuario remitente, Usuario destinatario) throws UsuarioException, MensajeException {
-        Usuario remi = repoUsuario.findById(remitente.getId()).get();
-        Usuario dest = repoUsuario.findById(destinatario.getId()).get();
-        if (remi.valido() && dest.valido()){
-            repoMensaje.deleteByRemitenteAndDestinatario(remi, dest);
-            repoMensaje.deleteByRemitenteAndDestinatario(dest, remi);
+//        Usuario remi = repoUsuario.findById(remitente.getId()).get();
+//        Usuario dest = repoUsuario.findById(destinatario.getId()).get();
+        if (remitente.valido() && destinatario.valido()){
+            repoMensaje.deleteByRemitenteAndDestinatario(remitente, destinatario);
+            //repoMensaje.deleteByRemitenteAndDestinatario(dest, remi);
             return true;
         }
         return false;

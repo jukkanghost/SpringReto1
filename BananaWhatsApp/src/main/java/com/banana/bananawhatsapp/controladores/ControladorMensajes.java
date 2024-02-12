@@ -3,6 +3,7 @@ package com.banana.bananawhatsapp.controladores;
 import com.banana.bananawhatsapp.modelos.Mensaje;
 import com.banana.bananawhatsapp.modelos.Usuario;
 import com.banana.bananawhatsapp.servicios.IServicioMensajeria;
+import com.banana.bananawhatsapp.servicios.IServicioUsuarios;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -14,12 +15,16 @@ public class ControladorMensajes {
     @Autowired
     private IServicioMensajeria servicioMensajeria;
 
+    @Autowired
+    private IServicioUsuarios servicioUsuarios;
+
     public boolean enviarMensaje(Integer remitente, Integer destinatario, String texto) {
         try {
             Usuario uRemitente = new Usuario();
             uRemitente.setId(remitente);
             Usuario uDestinatario = new Usuario();
             uDestinatario.setId(destinatario);
+
 
             Mensaje mensaje = servicioMensajeria.enviarMensaje(uRemitente, uDestinatario, texto);
             System.out.println("Mensaje enviado: " + mensaje);
@@ -33,10 +38,10 @@ public class ControladorMensajes {
 
     public boolean mostrarChat(Integer remitente, Integer destinatario) {
         try {
-            Usuario uRemitente = new Usuario();
-            uRemitente.setId(remitente);
-            Usuario uDestinatario = new Usuario();
-            uDestinatario.setId(destinatario);
+            Usuario uRemitente = servicioUsuarios.obtener(remitente);
+            //uRemitente.setId(remitente);
+            Usuario uDestinatario = servicioUsuarios.obtener(destinatario);
+            //uDestinatario.setId(destinatario);
 
             List<Mensaje> mensajes = servicioMensajeria.mostrarChatConUsuario(uRemitente, uDestinatario);
             if (mensajes != null && mensajes.size() > 0) {
@@ -57,10 +62,10 @@ public class ControladorMensajes {
 
     public boolean eliminarChatConUsuario(Integer remitente, Integer destinatario) {
         try {
-            Usuario uRemitente = new Usuario();
-            uRemitente.setId(remitente);
-            Usuario uDestinatario = new Usuario();
-            uDestinatario.setId(destinatario);
+            Usuario uRemitente = servicioUsuarios.obtener(remitente);
+            //uRemitente.setId(remitente);
+            Usuario uDestinatario = servicioUsuarios.obtener(destinatario);
+            //uDestinatario.setId(destinatario);
 
             boolean isOK = servicioMensajeria.borrarChatConUsuario(uRemitente, uDestinatario);
             if (isOK) {
