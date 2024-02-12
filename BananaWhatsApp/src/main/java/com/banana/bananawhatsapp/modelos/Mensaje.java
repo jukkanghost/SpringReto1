@@ -12,6 +12,9 @@ import java.time.LocalDate;
 @Getter
 @ToString
 @Entity
+@NamedQuery(name = "Mensaje.get", query = "SELECT e FROM Mensaje e WHERE e.remitente = ?1 OR e.destinatario = ?1")
+@NamedQuery(name = "Mensaje.borra", query = "DELETE FROM Mensaje e WHERE (e.remitente = ?1 AND e.destinatario = ?2) OR (e.remitente = ?2 AND e.destinatario = ?1)")
+@NamedQuery(name = "Mensaje.borraTodos", query = "DELETE FROM Mensaje e WHERE e.remitente = ?1 OR e.destinatario = ?1")
 public class Mensaje {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
