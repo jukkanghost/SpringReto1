@@ -39,9 +39,7 @@ public class ControladorMensajes {
     public boolean mostrarChat(Integer remitente, Integer destinatario) {
         try {
             Usuario uRemitente = servicioUsuarios.obtener(remitente);
-            //uRemitente.setId(remitente);
             Usuario uDestinatario = servicioUsuarios.obtener(destinatario);
-            //uDestinatario.setId(destinatario);
 
             List<Mensaje> mensajes = servicioMensajeria.mostrarChatConUsuario(uRemitente, uDestinatario);
             if (mensajes != null && mensajes.size() > 0) {
@@ -63,9 +61,7 @@ public class ControladorMensajes {
     public boolean eliminarChatConUsuario(Integer remitente, Integer destinatario) {
         try {
             Usuario uRemitente = servicioUsuarios.obtener(remitente);
-            //uRemitente.setId(remitente);
             Usuario uDestinatario = servicioUsuarios.obtener(destinatario);
-            //uDestinatario.setId(destinatario);
 
             boolean isOK = servicioMensajeria.borrarChatConUsuario(uRemitente, uDestinatario);
             if (isOK) {
